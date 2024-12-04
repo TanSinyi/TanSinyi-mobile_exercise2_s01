@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MAP Exercise 2 - TESTING',
+      title: 'MAP Exercise 2',
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
