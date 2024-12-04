@@ -11,6 +11,9 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   double _iconSize = 100; //Initial icon size
+  double _redSliderValue = 0.0;
+  double _greenSliderValue = 0.0;
+  double _blueSliderValue = 0.0;
   bool allowResize = true;
 
 //Function for minimize button
@@ -52,6 +55,25 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  //Function to change each color components
+  void _onRedSliderChanged(double value) {
+    setState(() {
+      _redSliderValue = value;
+    });
+  }
+
+  void _onGreenSliderChanged(double value) {
+    setState(() {
+      _greenSliderValue = value;
+    });
+  }
+
+  void _onBlueSliderChanged(double value) {
+    setState(() {
+      _blueSliderValue = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -81,7 +103,15 @@ class _MainScreenState extends State<MainScreen> {
         body: MainBody(
           iconSize: _iconSize,
         ),
-        bottomNavigationBar: MainBottomBar(),
+        bottomNavigationBar: MainBottomBar(
+          redSliderValue: _redSliderValue,
+          greenSliderValue: _greenSliderValue,
+          blueSliderValue: _blueSliderValue,
+          onRedSliderChanged: _onRedSliderChanged,
+          onGreenSliderChanged: _onGreenSliderChanged,
+          onBlueSliderChanged: _onBlueSliderChanged,
+          allowChangeColor: true,
+        ),
       ),
     );
   }
