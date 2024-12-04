@@ -15,9 +15,11 @@ class _MainScreenState extends State<MainScreen> {
 
 //Function for minimize button
   void _decreaseSize() {
-    setState(() {
-      _iconSize -= 50.0;
-    });
+    if (_iconSize >= 50) {
+      setState(() {
+        _iconSize -= 50.0;
+      });
+    }
   }
 
 //Function for S button
@@ -43,24 +45,28 @@ class _MainScreenState extends State<MainScreen> {
 
   //Function for enlarge button
   void _increaseSize() {
-    setState(() {
-      _iconSize += 50.0;
-    });
+    if (_iconSize <= 500) {
+      setState(() {
+        _iconSize += 50.0;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: MainAppBar( 
-         /*onDecrease: _decreaseSize,
-         onIncrease: _increaseSize,
+        appBar: MainAppBar(
+          onDecrease: _decreaseSize,
+          onIncrease: _increaseSize,
           smallSize: _smallSize,
           mediumSize: _mediumSize,
-          largeSize: _largeSize,*/
+          largeSize: _largeSize,
           allowResize: allowResize,
         ),
-        body: MainBody(),
+        body: MainBody(
+          iconSize: _iconSize,
+        ),
         bottomNavigationBar: MainBottomBar(),
       ),
     );
