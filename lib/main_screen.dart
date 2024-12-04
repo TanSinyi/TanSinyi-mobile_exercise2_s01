@@ -64,6 +64,20 @@ class _MainScreenState extends State<MainScreen> {
           largeSize: _largeSize,
           allowResize: allowResize,
         ),
+        drawer: Drawer(
+            child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            CheckboxListTile(
+                title: const Text('Allow resize?'),
+                value: allowResize,
+                onChanged: (bool? value) {
+                  setState(() {
+                    allowResize = value!;
+                  });
+                })
+          ],
+        )),
         body: MainBody(
           iconSize: _iconSize,
         ),

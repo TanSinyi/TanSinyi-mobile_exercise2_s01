@@ -23,6 +23,12 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.brown,
+      leading: IconButton(
+          icon: const Icon(Icons.menu),
+          color: Colors.white,
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          }),
       title: const Text('My Icon',
           style: TextStyle(fontSize: 25.0, color: Colors.white)),
       actions: [
