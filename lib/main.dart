@@ -1,3 +1,5 @@
+// Member 1: Tan Sin Yi (A22EC0281)
+// Member 2: Goh Zi Qin (A22EC0163)
 import 'package:flutter/material.dart';
 
 import 'main_screen.dart';
