@@ -15,6 +15,7 @@ class _MainScreenState extends State<MainScreen> {
   double _greenSliderValue = 0.0;
   double _blueSliderValue = 0.0;
   bool allowResize = true;
+  bool allowChangeColor = true;
 
 //Function for minimize button
   void _decreaseSize() {
@@ -90,18 +91,52 @@ class _MainScreenState extends State<MainScreen> {
             child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            CheckboxListTile(
-                title: const Text('Allow resize?'),
+            // Allow resize
+            Card(
+              margin: const EdgeInsets.all(8),
+              elevation: 2, //Shadow dept
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              child: CheckboxListTile(
+                title: const Text(
+                  'Allow resize?',
+                  style: TextStyle(fontSize: 15),
+                ),
                 value: allowResize,
                 onChanged: (bool? value) {
                   setState(() {
                     allowResize = value!;
                   });
-                })
+                },
+                activeColor: Colors.brown,
+              ),
+            ),
+            // Allow change primer color
+            Card(
+              margin: const EdgeInsets.all(8),
+              elevation: 2, //Shadow dept
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              child: CheckboxListTile(
+                title: const Text(
+                  'Allow change primer color?',
+                  style: TextStyle(fontSize: 15),
+                ),
+                value: allowChangeColor,
+                onChanged: (bool? value) {
+                  setState(() {
+                    allowChangeColor = value!;
+                  });
+                },
+                activeColor: Colors.brown,
+              ),
+            ),
           ],
         )),
         body: MainBody(
           iconSize: _iconSize,
+          iconColor: Color.fromRGBO(_redSliderValue.toInt(),
+              _greenSliderValue.toInt(), _blueSliderValue.toInt(), 1.0),
         ),
         bottomNavigationBar: MainBottomBar(
           redSliderValue: _redSliderValue,
@@ -110,7 +145,7 @@ class _MainScreenState extends State<MainScreen> {
           onRedSliderChanged: _onRedSliderChanged,
           onGreenSliderChanged: _onGreenSliderChanged,
           onBlueSliderChanged: _onBlueSliderChanged,
-          allowChangeColor: true,
+          allowChangeColor: allowChangeColor,
         ),
       ),
     );
